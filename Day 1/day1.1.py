@@ -1,5 +1,5 @@
 # Open data
-with open('data1.1.txt', 'r') as f:
+with open('AdventOfCode2023\Day 1\data1.1.txt', 'r') as f:
     lines = f.read().split('\n')
 f.close()
 
