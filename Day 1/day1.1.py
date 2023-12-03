@@ -3,8 +3,6 @@ with open('AdventOfCode2023\Day 1\data1.1.txt', 'r') as f:
     lines = f.read().split('\n')
 f.close()
 
-lines.pop()
-
 # Prepare for-loop
 digits = ['0','1','2','3','4','5','6','7','8','9']
 number = ''
