@@ -6,6 +6,7 @@ from string import punctuation
 
 def isNumber(char):
     numbers = ['0','1','2','3','4','5','6','7','8','9']
+    
     if char in numbers:
         return True
     
@@ -14,6 +15,7 @@ def isNumber(char):
 def containsSymbol(env):
     symbols = list(punctuation)
     symbols.remove('.')
+    
     for symbol in symbols:
         if symbol in env:
             return True
@@ -27,6 +29,7 @@ def isStar(char):
     return False
 
 def scanTopEnvironment(matrix, row, column):
+    
     if row == 0:
         top_env = []
     elif column == 0:
@@ -37,6 +40,7 @@ def scanTopEnvironment(matrix, row, column):
     return top_env
 
 def scanBottomEnvironment(matrix, row, column):
+    
     if row == len(matrix) -1 :
         bottom_env = []
     elif column == 0:
@@ -64,6 +68,7 @@ def scanSideEnvironment(matrix, row, column):
         
 
 def scanEnvironment(matrix, row, column):
+    
     top_env = scanTopEnvironment(matrix, row, column)
     bottom_env = scanBottomEnvironment(matrix,row,column)
     side_env= scanSideEnvironment(matrix,row,column)
@@ -87,6 +92,7 @@ with open('Day 3\data.txt', 'r') as f:
 
 
 
+
 ####### PART 1
 
 
@@ -104,31 +110,29 @@ for i in range(len(matrix)):
         
         if isNumber(current_char):
             
-            number = int(current_char)
-            
+            number = current_char
             env = scanEnvironment(matrix,i,j)
             
             prev_char = scanSideEnvironment(matrix,i,j)[0]
             
             if isNumber(prev_char):
-                number = int(prev_char + current_char)
                 
+                number = prev_char + current_char
                 prev_env = scanEnvironment(matrix,i,j-1)
-                
+
                 prev_prev_char = scanSideEnvironment(matrix,i,j-1)[0]
                 
                 if isNumber(prev_prev_char):
-                    number = int(prev_prev_char+prev_char+current_char)
+                    
+                    number = prev_prev_char+prev_char+current_char
                     
                     prev_prev_env = scanEnvironment(matrix,i,j-2)
                 
             env += prev_env + prev_prev_env
-            env = set(env)
-            
             next_char = scanSideEnvironment(matrix,i,j)[-1]
              
             if containsSymbol(env) and isNumber(next_char) == False:
-                part_numbers.append(number)
+                part_numbers.append(int(number))
 
             
 answer1 = sum(part_numbers)
@@ -205,3 +209,5 @@ answer2 = sum(ratios)
 print('answer 2 =', answer2)
                 
             
+# answer 1 = 535351
+# answer 2 = 87287096
