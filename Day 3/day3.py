@@ -66,7 +66,6 @@ def scanSideEnvironment(matrix, row, column):
     
     return side_env
         
-
 def scanEnvironment(matrix, row, column):
     
     top_env = scanTopEnvironment(matrix, row, column)
